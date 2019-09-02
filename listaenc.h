@@ -7,7 +7,9 @@ class ListaEnc
 		Nodo *primeiro;
 		int tam;
 		ListaEnc();
+		~ListaEnc();
 		void insere(int valor);
+		int procurar(int num, int i);
 		void imprime();
 	private:	
 };

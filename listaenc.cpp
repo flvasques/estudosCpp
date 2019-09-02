@@ -6,6 +6,12 @@ ListaEnc::ListaEnc()
 	this->tam = 0;
 	this->primeiro = NULL;
 }
+ListaEnc::~ListaEnc()
+{
+	if(this->primeiro != NULL)
+		delete[] this->primeiro;
+	free(this);
+}
 void ListaEnc::insere(int valor)
 {
 	Nodo *n = new Nodo(valor);
@@ -37,4 +43,11 @@ void ListaEnc::imprime()
 			printf(",");
 	}
 	printf(")");
+}
+int ListaEnc::procurar(int num, int i)
+{
+	if(this->primeiro != NULL)
+		return this->primeiro->procurar(num, i);
+	else
+		return 0;
 }
