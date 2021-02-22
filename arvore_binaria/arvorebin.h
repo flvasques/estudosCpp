@@ -12,6 +12,7 @@ class No
 		No(int v, No *pai);
 		~No();
 		void insere(int v);
+		void insere(No *no);
 		void imprimePre();
 		void imprimePos();
 		void imprimeEm();

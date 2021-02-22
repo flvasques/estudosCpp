@@ -40,6 +40,29 @@ void No::insere(int v)
 			this->dir->insere(v);
 	}
 }
+void No::insere(No *no)
+{
+	if(no->valor <= this->valor)
+	{
+		if(this->esq == NULL)
+		{
+			this->esq = no;
+			no->pai = this;
+		}
+		else
+			this->esq->insere(no);
+	}
+	else
+	{
+		if(this->dir == NULL)
+		{
+			this->dir = no;
+			no->pai = this;
+		}
+		else
+			this->dir->insere(no);
+	}
+}
 void No::imprimePre()
 {
 	printf("%i", this->valor);
@@ -79,21 +102,34 @@ int No::buscar(int num)
 		return 0;
 }
 
-void remover(int num) 
+void No::remover(int num) 
 {
-	cout << "entrou";
-	/*if (this->valor == num)
+	if (this->valor == num)
 	{
+
 		if(this->pai != NULL && this->esq != NULL)
-			this->esp->pai = this->pai;
-		if(this->pai != NULL && this->dir != NULL)
-			this->dir->pai = this->pai;
+		{
+			if(this->valor < this->pai->valor)
+				this->pai->esq = this->esq;
+			else
+				this->pai->dir = this->esq;
+			
+			if(this->dir != NULL)
+				this->esq->insere(this->dir);
+		}
+		else if(this->pai != NULL && this->dir != NULL)	
+		{
+			if(this->valor < this->pai->valor)
+				this->pai->esq = this->dir;
+			else
+				this->pai->dir = this->dir;
+		}	
 		free(this);
 	}
 	else if(num < this->valor && this->esq != NULL)
 		this->esq->remover(num);
 	else if(num > this->valor && this->dir != NULL)
-		this->dir->remover(num);*/
+		this->dir->remover(num);
 }
 
 int No::count(int num, int i)
