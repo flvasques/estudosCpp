@@ -1,5 +1,5 @@
 cls
-g++ -c main.cpp nodo.h nodo.cpp listaenc.h listaenc.cpp arvorebin.h arvorebin.cpp
+g++ -c main.cpp nodo.h nodo.cpp listaenc.h listaenc.cpp
 g++ main.o nodo.o listaenc.o arvorebin.o -o "com_arvores"
 del *.o
 del *.gch

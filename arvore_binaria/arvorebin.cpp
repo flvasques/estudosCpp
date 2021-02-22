@@ -1,15 +1,14 @@
 #include <iostream>
 #include "arvorebin.h"
-#include "listaenc.h"
 using namespace std;
-No::No(ListaEnc *v)
+No::No(int v)
 {
 	this->esq = NULL;
 	this->dir = NULL;
 	this->pai = NULL;
 	this->valor = v;
 }
-No::No(ListaEnc *v, No *pai)
+No::No(int v, No *pai)
 {
 	this->esq = NULL;
 	this->dir = NULL;
@@ -18,16 +17,15 @@ No::No(ListaEnc *v, No *pai)
 }
 No::~No()
 {
-	if(this->esq == NULL)
+	if(this->esq != NULL)
 		this->esq->~No();
-	if(this->dir == NULL)
+	if(this->dir != NULL)
 		this->dir->~No();
-	delete[] this->valor;
 	free(this);
 }
-void No::insere(ListaEnc *v)
+void No::insere(int v)
 {
-	if(v->tam <= this->valor->tam)
+	if(v <= this->valor)
 	{
 		if(this->esq == NULL)
 			this->esq = new No(v, this);
@@ -44,7 +42,7 @@ void No::insere(ListaEnc *v)
 }
 void No::imprimePre()
 {
-	this->valor->imprime();
+	printf("%i", this->valor);
 	cout << endl;
 	if(this->esq != NULL)
 		this->esq->imprimePre();
@@ -57,27 +55,45 @@ void No::imprimePos()
 		this->esq->imprimePos();
 	if(this->dir != NULL)
 		this->dir->imprimePos();
-	this->valor->imprime();
+	printf("%i", this->valor);
 	cout << endl;
 }
 void No::imprimeEm()
 {
 	if(this->esq != NULL)
 		this->esq->imprimeEm();
-	this->valor->imprime();
+	printf("%i", this->valor);
 	cout << endl;
 	if(this->dir != NULL)
 		this->dir->imprimeEm();
 }
 int No::buscar(int num)
 {
-	int acumulador = 0;
-	acumulador = this->valor->procurar(num, 0);
-	if(this->esq != NULL)
-		acumulador += this->esq->buscar(num);
-	if(this->dir != NULL)
-		acumulador += this->dir->buscar(num);
-	return acumulador;
+	if(this->valor == num)
+		return 1;
+	else if(num < this->valor && this->esq != NULL)
+		return this->esq->buscar(num);
+	else if(num > this->valor && this->dir != NULL)
+		return this->dir->buscar(num);
+	else
+		return 0;
+}
+
+void remover(int num) 
+{
+	cout << "entrou";
+	/*if (this->valor == num)
+	{
+		if(this->pai != NULL && this->esq != NULL)
+			this->esp->pai = this->pai;
+		if(this->pai != NULL && this->dir != NULL)
+			this->dir->pai = this->pai;
+		free(this);
+	}
+	else if(num < this->valor && this->esq != NULL)
+		this->esq->remover(num);
+	else if(num > this->valor && this->dir != NULL)
+		this->dir->remover(num);*/
 }
 
 int No::count(int num, int i)

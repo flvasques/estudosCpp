@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdlib.h>
-#include "arvorebin.h"
 #include "listaenc.h"
 #ifdef __linux__ 
 	#include <stdio_ext.h>
