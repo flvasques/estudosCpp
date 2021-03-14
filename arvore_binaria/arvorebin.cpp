@@ -25,7 +25,11 @@ No::~No()
 }
 void No::insere(int v)
 {
-	if(v <= this->valor)
+	if(v == this->valor)
+	{
+		printf ("Elemento repetido. \n");
+		return;
+	} else if(v < this->valor)
 	{
 		if(this->esq == NULL)
 			this->esq = new No(v, this);
@@ -136,3 +140,28 @@ int No::count(int num, int i)
 {
 	return 0;
 }
+
+int No::altura()
+{
+	// Cria 2 variaveis para determinar a altura
+	int altura_esquerda = 0;
+	int altura_direita  = 0;
+
+	if(this->esq != NULL)
+	{
+		altura_esquerda = this->esq->altura();
+	}
+	
+	if(this->dir != NULL)
+	{
+		altura_direita = this->dir->altura();
+	}
+	
+	// Determina qual dos lados da Arvore é mais alto
+	if (altura_esquerda < altura_direita)
+		return altura_direita + 1;
+	else
+		return altura_esquerda + 1;
+
+}
+

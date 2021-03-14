@@ -18,6 +18,7 @@ class No
 		void imprimeEm();
 		int buscar(int num);
 		void remover(int num);
+		int altura();
 	private:
 		int count(int num, int i);
 };

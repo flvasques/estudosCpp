@@ -1,4 +1,6 @@
 *.exe
+*.o
+*ghc
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
