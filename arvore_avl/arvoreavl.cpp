@@ -37,10 +37,8 @@ void NoAVL::insere(int elem, bool status)
 	} 
 	else if (elem < this->valor)
 	{
-		printf ("menor. \n");
 		if(this->esq == NULL)
 		{
-			printf ("menor nulo. \n");
 			this->esq = new NoAVL(elem, this);
 			if (status == true)
 			{
@@ -57,10 +55,8 @@ void NoAVL::insere(int elem, bool status)
 	}
 	else
 	{
-		printf ("maior. \n");
 		if(this->dir == NULL)
 		{
-			printf ("maior nulo. \n");
 			this->dir = new NoAVL(elem, this);
 			if (status == true)
 			{
@@ -78,7 +74,6 @@ void NoAVL::insere(int elem, bool status)
 }
 void NoAVL::rotacionarDir (NoAVL *a, bool status)
 {
-	printf ("rotacionarDir. \n");
 	NoAVL *b, *c;
 	b = a->esq;
 	if (b->fatBal == -1)
@@ -109,7 +104,6 @@ void NoAVL::rotacionarDir (NoAVL *a, bool status)
 
 void NoAVL::rotacionarEsq(NoAVL *a, bool status)
 {
-	printf ("rotacionarEsq. \n");
 	NoAVL *b, *c;
 	b = a->dir;
 	if(b->fatBal == 1) 
@@ -223,6 +217,13 @@ void NoAVL::remover(int num)
 				this->raiz->esq = this->dir;
 			else
 				this->raiz->dir = this->dir;
+		}
+		else if(this->raiz != NULL && (this->dir == NULL && this->dir == NULL))	
+		{
+			if(this->valor < this->raiz->valor)
+				this->raiz->esq = NULL;
+			else
+				this->raiz->dir = NULL;
 		}	
 		free(this);
 	}

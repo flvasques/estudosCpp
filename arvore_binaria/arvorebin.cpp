@@ -127,6 +127,13 @@ void No::remover(int num)
 				this->pai->esq = this->dir;
 			else
 				this->pai->dir = this->dir;
+		}
+		else if(this->pai != NULL && (this->dir == NULL && this->dir == NULL))
+		{
+			if(this->valor < this->pai->valor)
+				this->pai->esq = NULL;
+			else
+				this->pai->dir = NULL;
 		}	
 		free(this);
 	}
